@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image" href="A.png">
+    <title>Ashish Chandra — Links</title>
+    <style>
+        * {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            margin: 0;
+            min-height: 100%;
+            font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            color: #d0d0d0;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+        }
+
+        .fix {
+            z-index: 1;
+            height: 100svh;
+            width: 100svw;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background:
+                radial-gradient(circle at 20% 0%,
+                    rgba(241, 99, 63, 0.45) 0%,
+                    rgba(241, 99, 63, 0.12) 28%,
+                    transparent 55%),
+                radial-gradient(circle at 100% 100%,
+                    rgba(241, 99, 63, 0.30) 0%,
+                    transparent 45%),
+                #181c1f;
+        }
+
+        .fix::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9999;
+
+            opacity: 0.035;
+
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+
+            mix-blend-mode: soft-light;
+        }
+
+        .page {
+            width: min(100%, 430px);
+            min-height: 100vh;
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+            z-index: 2;
+        }
+
+        .topbar {
+            height: 66px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            z-index: 4
+        }
+
+        .round-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #d0d0d0;
+            display: grid;
+            place-items: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, .08);
+            border: 0;
+            color: #111
+        }
+
+        .round-btn svg {
+            width: 21px;
+            height: 21px
+        }
+
+        .hero {
+            height: 500px;
+            margin: 0;
+            position: relative;
+            overflow: hidden;
+            border-radius: 210px 210px 0 0;
+            background: #181c1f
+        }
+
+        .hero:after {
+            content: "";
+            position: absolute;
+            left: -80px;
+            right: -80px;
+            bottom: -300px;
+            height: 500px;
+            background:
+                radial-gradient(circle at center,
+                    #181c1f 0%,
+                    #181c1f 100%,
+                    #181c1f59 65%,
+                    transparent 100%);
+            filter: blur(12px);
+            border-radius: 50% 50% 0 0/45% 45% 0 0;
+            z-index: 2
+        }
+
+        .photo {
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            object-fit: cover;
+            object-position: center top;
+            filter: saturate(.95)
+        }
+
+        .profile-content {
+            position: absolute;
+            z-index: 5;
+            top: 318px;
+            left: 0;
+            right: 0;
+            text-align: center
+        }
+
+        h1 {
+            font-size: 38px;
+            line-height: 1.05;
+            margin: 0 0 10px;
+            font-weight: 600;
+            letter-spacing: -1.5px
+        }
+
+        .tagline {
+            font-size: 16px;
+            line-height: 1.55;
+            letter-spacing: .1px
+        }
+
+        .socials {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            margin-top: 18px
+        }
+
+        .socials a {
+            width: 26px;
+            height: 26px;
+            display: grid;
+            place-items: center;
+            color: #d0d0d0;
+            text-decoration: none
+        }
+
+        .socials svg {
+            width: 27px;
+            height: 27px
+        }
+
+        .content {
+            position: relative;
+            z-index: 5;
+            margin-top: -15px;
+            padding: 0 15px;
+            padding-bottom: 12px;
+            margin-bottom: 50px;
+            border-radius: 0 0 33.5px 33.5px;
+            background: #181c1f;
+        }
+
+        .card {
+            position: relative;
+            background: transparent;
+            border: 1.2px solid #f1633f;
+            border-radius: 33.5px;
+            margin: 14px 2px;
+            overflow: hidden;
+            box-shadow: 0 1px 0 rgba(255, 255, 255, .35) inset
+        }
+
+        .link-card {
+            height: 67px;
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            gap: 12px
+        }
+
+        .link-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 24px;
+            background: #d0d0d0;
+            display: grid;
+            place-items: center;
+            flex: none;
+            overflow: hidden
+        }
+
+        .link-icon svg {
+            width: 28px;
+            height: 28px;
+            color: #181c1f;
+        }
+
+        .link-title {
+            font-size: 15px;
+            flex: 1;
+            text-align: center;
+            margin-right: 42px;
+            color: #d0d0d0;
+            font-size: large;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .watermark {
+            text-align: center;
+            font-size: 12px;
+            color: #777;
+            margin: 24px 0
+        }
+
+        @media(max-width:380px) {
+            h1 {
+                font-size: 34px
+            }
+
+            .hero {
+                height: 440px
+            }
+
+            .profile-content {
+                top: 310px
+            }
+
+            .photo {
+                width: 320px
+            }
+        }
+
+        #page-loader {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+
+            background: #181c1f;
+
+            transition:
+                opacity 0.7s ease,
+                visibility 0.7s ease;
+        }
+
+        #page-loader.loaded {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+
+        /* Loader */
+
+        .loader {
+            width: 90px;
+            height: 90px;
+            position: relative;
+
+            display: grid;
+            place-items: center;
+        }
+
+
+        /* Rotating ring */
+
+        .loader-ring {
+            position: absolute;
+            inset: 0;
+
+            border-radius: 50%;
+
+            border: 2px solid rgba(241, 99, 63, 0.12);
+            border-top-color: #f1633f;
+            border-right-color: rgba(241, 99, 63, 0.5);
+
+            animation: loader-spin 1.2s linear infinite;
+
+            filter: drop-shadow(0 0 8px rgba(241, 99, 63, 0.35));
+        }
+
+
+        /* Small orbiting dot */
+
+        .loader-dot {
+            position: absolute;
+
+            width: 9px;
+            height: 9px;
+
+            border-radius: 50%;
+
+            background: #f1633f;
+
+            box-shadow:
+                0 0 8px #f1633f,
+                0 0 20px rgba(241, 99, 63, 0.7);
+
+            animation: loader-orbit 1.2s linear infinite;
+        }
+
+
+        /* Center */
+
+        .loader-logo {
+            width: 48px;
+            height: 48px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 50%;
+
+            background: #181c1f;
+
+            color: #f1633f;
+
+            font-size: 19px;
+            font-weight: 700;
+            letter-spacing: -1px;
+
+            border: 1px solid rgba(241, 99, 63, 0.2);
+        }
+
+
+        /* Text */
+
+        .loader-text {
+            color: rgba(208, 208, 208, 0.65);
+
+            font-size: 10px;
+            font-weight: 600;
+
+            letter-spacing: 4px;
+
+            animation: loader-pulse 1.6s ease-in-out infinite;
+        }
+
+
+        /* Animations */
+
+        @keyframes loader-spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes loader-orbit {
+            from {
+                transform: rotate(0deg) translateX(40px) rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg) translateX(40px) rotate(-360deg);
+            }
+        }
+
+        @keyframes loader-pulse {
+
+            0%,
+            100% {
+                opacity: 0.4;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        #page-loader::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+
+            pointer-events: none;
+
+            opacity: 0.035;
+
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+
+            mix-blend-mode: soft-light;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="page-loader">
+        <div class="loader">
+            <div class="loader-ring"></div>
+            <div class="loader-dot"></div>
+            <div class="loader-logo">A</div>
+        </div>
+
+        <div class="loader-text">ASHISH CHANDRA</div>
+    </div>
+    <div class="fix"></div>
+    <main class="page">
+        <div class="topbar">
+            <button class="round-btn" aria-label="Profile menu" onclick="bookmarkPage(event)"><svg viewBox="0 0 24 24"
+                    aria-hidden="true">
+                    <path fill="currentColor"
+                        d="M12 2.2 14.9 8l6.4.93-4.64 4.52 1.1 6.38L12 16.82 6.24 19.83l1.1-6.38L2.7 8.93 9.1 8 12 2.2Z" />
+                </svg></button>
+            <button class="round-btn" aria-label="Share"
+                onclick="navigator.share ? navigator.share({title:'Ashish Chandra',url:location.href}) : alert('Copy this page URL to share it.')"><svg
+                    viewBox="0 0 24 24" aria-hidden="true">
+                    <path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M12 15V3m0 0L7.5 7.5M12 3l4.5 4.5M5 11v8.5A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V11" />
+                </svg></button>
+        </div>
+
+        <section class="hero">
+            <img class="photo" src="ashish.png">
+            <div class="profile-content">
+                <h1>Ashish Chandra</h1>
+                <div class="tagline">Design • Develop • DS<br>– AI • Tech • Creative –</div>
+                <nav class="socials" aria-label="Social links">
+                    <a href="https://github.com/c0derashish" target="_blank" aria-label="GitHub"><svg
+                            viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill="currentColor"
+                                d="M12 .7a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.4-1.34-1.77-1.34-1.77-1.09-.75.08-.74.08-.74 1.2.09 1.84 1.23 1.84 1.23 1.07 1.83 2.8 1.3 3.48.99.11-.77.42-1.3.76-1.6-2.67-.3-5.47-1.34-5.47-5.94 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.45 11.45 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.63-5.48 5.93.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.58A12 12 0 0 0 12 .7Z" />
+                        </svg></a>
+                    <a href="https://linkedin.com/in/ashish-chandra-552528296" target="_blank"
+                        aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill="currentColor"
+                                d="M5.37 3.38A2.38 2.38 0 1 1 .62 3.38a2.38 2.38 0 0 1 4.75 0ZM.9 8.01h4.52V23H.9V8.01ZM8.07 8.01h4.34v2.05h.06c.6-1.14 2.08-2.34 4.29-2.34 4.59 0 5.44 3.02 5.44 6.94V23h-4.52v-7.4c0-1.77-.03-4.05-2.47-4.05-2.47 0-2.85 1.93-2.85 3.92V23H8.07V8.01Z" />
+                        </svg></a>
+                    <a href="https://www.instagram.com/ashish.chandra_" target="_blank" aria-label="Instagram"><svg
+                            viewBox="0 0 24 24" aria-hidden="true">
+                            <rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor"
+                                stroke-width="2" />
+                            <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2" />
+                            <circle cx="17.4" cy="6.7" r="1.1" fill="currentColor" />
+                        </svg></a>
+                    <a href="mailto:ashishchandra.work@gmail.com" aria-label="Email"><svg stroke="currentColor"
+                            fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round"
+                            stroke-linejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                            </path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg></a>
+                    <a href="https://wa.me/918770941247" target="_blank" aria-label="WhatsApp"><svg viewBox="0 0 24 24"
+                            aria-hidden="true">
+                            <path fill="currentColor"
+                                d="M20.5 3.5A11.8 11.8 0 0 0 12.05.02C5.55.02.26 5.3.26 11.8c0 2.08.54 4.1 1.57 5.88L.17 23.98l6.45-1.63a11.8 11.8 0 0 0 5.42 1.31h.01c6.5 0 11.78-5.29 11.78-11.79 0-3.15-1.23-6.11-3.33-8.37ZM12.05 21.65h-.01a9.82 9.82 0 0 1-5.01-1.37l-.36-.21-3.83.97 1.02-3.73-.23-.38a9.82 9.82 0 0 1-1.5-5.13c0-5.42 4.42-9.83 9.85-9.83 2.63 0 5.1 1.02 6.96 2.89a9.77 9.77 0 0 1 2.88 6.96c0 5.43-4.42 9.84-9.77 9.84Zm5.4-7.38c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.28-.47-2.44-1.51-.9-.8-1.51-1.78-1.69-2.08-.18-.3-.02-.46.13-.61.14-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.49s1.07 2.89 1.22 3.09c.15.2 2.1 3.21 5.09 4.5.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35Z" />
+                        </svg></a>
+                </nav>
+            </div>
+        </section>
+
+        <section class="content">
+            <a href="https://www.instagram.com/ashish.chandra_" target="_blank" aria-label="GitHub">
+                <article class="card link-card">
+                    <div class="link-icon"><svg viewBox="0 0 24 24" aria-hidden="true">
+                            <rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor"
+                                stroke-width="2" />
+                            <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2" />
+                            <circle cx="17.4" cy="6.7" r="1.1" fill="currentColor" />
+                        </svg></div>
+                    <div class="link-title">Instagram</div>
+
+
+                </article>
+            </a>
+
+            <a href="https://linkedin.com/in/ashish-chandra-552528296" target="_blank" aria-label="GitHub">
+                <article class="card link-card">
+                    <div class="link-icon"><svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill="currentColor"
+                                d="M5.37 3.38A2.38 2.38 0 1 1 .62 3.38a2.38 2.38 0 0 1 4.75 0ZM.9 8.01h4.52V23H.9V8.01ZM8.07 8.01h4.34v2.05h.06c.6-1.14 2.08-2.34 4.29-2.34 4.59 0 5.44 3.02 5.44 6.94V23h-4.52v-7.4c0-1.77-.03-4.05-2.47-4.05-2.47 0-2.85 1.93-2.85 3.92V23H8.07V8.01Z" />
+                        </svg></div>
+                    <div class="link-title">LinkedIn</div>
+
+                </article>
+            </a>
+
+            <a href="https://github.com/c0derashish" target="_blank" aria-label="GitHub">
+                <article class="card link-card">
+                    <div class="link-icon"><svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill="currentColor"
+                                d="M12 .7a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.4-1.34-1.77-1.34-1.77-1.09-.75.08-.74.08-.74 1.2.09 1.84 1.23 1.84 1.23 1.07 1.83 2.8 1.3 3.48.99.11-.77.42-1.3.76-1.6-2.67-.3-5.47-1.34-5.47-5.94 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.45 11.45 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.63-5.48 5.93.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.58A12 12 0 0 0 12 .7Z" />
+                        </svg></div>
+                    <div class="link-title">GitHub</div>
+
+                </article>
+            </a>
+
+            <a href="http://ashishchandra.online/" target="_blank" aria-label="GitHub">
+                <article class="card link-card">
+                    <div class="link-icon">
+                        <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24"
+                            stroke-linecap="round" stroke-linejoin="round" height="1em" width="1em"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <rect x="3" y="7" width="18" height="13" rx="2"></rect>
+                            <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                            <path d="M3 12h18"></path>
+                            <path d="M10 12v2h4v-2"></path>
+                        </svg>
+                    </div>
+                    <div class="link-title">Portfolio</div>
+                </article>
+            </a>
+
+            <a href="https://wa.me/918770941247" target="_blank" aria-label="GitHub">
+                <article class="card link-card">
+                    <div class="link-icon"><svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill="currentColor"
+                                d="M20.5 3.5A11.8 11.8 0 0 0 12.05.02C5.55.02.26 5.3.26 11.8c0 2.08.54 4.1 1.57 5.88L.17 23.98l6.45-1.63a11.8 11.8 0 0 0 5.42 1.31h.01c6.5 0 11.78-5.29 11.78-11.79 0-3.15-1.23-6.11-3.33-8.37ZM12.05 21.65h-.01a9.82 9.82 0 0 1-5.01-1.37l-.36-.21-3.83.97 1.02-3.73-.23-.38a9.82 9.82 0 0 1-1.5-5.13c0-5.42 4.42-9.83 9.85-9.83 2.63 0 5.1 1.02 6.96 2.89a9.77 9.77 0 0 1 2.88 6.96c0 5.43-4.42 9.84-9.77 9.84Zm5.4-7.38c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.28-.47-2.44-1.51-.9-.8-1.51-1.78-1.69-2.08-.18-.3-.02-.46.13-.61.14-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.49s1.07 2.89 1.22 3.09c.15.2 2.1 3.21 5.09 4.5.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35Z" />
+                        </svg></div>
+                    <div class="link-title">WhatsApp</div>
+
+                </article>
+            </a>
+
+            <a href="mailto:ashishchandra.work@gmail.com" target="_blank" aria-label="GitHub">
+                <article class="card link-card">
+                    <div class="link-icon">
+                        <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24"
+                            stroke-linecap="round" stroke-linejoin="round" height="1em" width="1em"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                            </path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                    </div>
+
+                    <div class="link-title">E-mail</div>
+                </article>
+            </a>
+
+            <a href="https://www.snapchat.com/add/ashishh.chandra" target="_blank" aria-label="GitHub">
+                <article class="card link-card">
+                    <div class="link-icon">
+                        <svg viewBox="0 0 468.339 468.339" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path fill="currentColor"
+                                d="M233.962,33.724c62.857,0.021,115.216,52.351,115.292,115.36c0.018,14.758,0.473,28.348,1.306,40.867c0.514,7.724,6.938,13.448,14.305,13.448c1.085,0,2.19-0.124,3.3-0.384l19.691-4.616c0.838-0.197,1.679-0.291,2.51-0.291c5.001,0,9.606,3.417,10.729,8.478c1.587,7.152-2.42,14.378-9.35,16.808l-29.89,12.066c-7.546,3.046-11.599,11.259-9.474,19.115c23.98,88.654,90.959,79.434,90.959,90.984c0,14.504-50.485,16.552-55.046,21.114s-0.198,26.701-10.389,30.987c-1.921,0.808-4.65,1.089-7.979,1.089c-7.676,0-18.532-1.498-29.974-1.498c-9.925,0-20.291,1.127-29.404,5.337c-24.176,11.168-47.484,32.028-76.378,32.028s-52.202-20.86-76.378-32.028c-9.115-4.211-19.478-5.337-29.404-5.337c-11.441,0-22.299,1.498-29.974,1.498c-3.327,0-6.059-0.282-7.979-1.089c-10.191-4.286-5.828-26.425-10.389-30.987S25,360.062,25,345.558c0-11.551,66.979-2.331,90.959-90.984c2.125-7.855-1.928-16.068-9.475-19.115l-29.89-12.066c-6.931-2.43-10.938-9.656-9.35-16.808c1.123-5.062,5.728-8.479,10.729-8.478c0.83,0,1.672,0.094,2.51,0.291l19.691,4.616c1.11,0.26,2.215,0.384,3.3,0.384c7.366,0,13.791-5.725,14.305-13.448c0.833-12.519,1.289-26.109,1.307-40.867C119.162,86.075,171.104,33.746,233.962,33.724Z" />
+                        </svg>
+                    </div>
+
+                    <div class="link-title">Snapchat</div>
+                </article>
+            </a>
+        </section>
+    </main>
+
+    <script>
+        function bookmarkPage(event) {
+            event.preventDefault();
+
+            alert(
+                "To bookmark this page:\n\n" +
+                "Windows / Linux: Ctrl + D\n" +
+                "Mac: ⌘ + D"
+            );
+        }
+
+        window.addEventListener("load", () => {
+            setTimeout(() => {
+                document
+                    .getElementById("page-loader")
+                    .classList.add("loaded");
+            }, 500);
+        });
+    </script>
+</body>
+
+</html>
