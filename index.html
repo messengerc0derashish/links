@@ -17,6 +17,15 @@
             min-height: 100%;
             font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
             color: #d0d0d0;
+            background:
+                radial-gradient(circle at 20% 0%,
+                    rgba(241, 99, 63, 0.45) 0%,
+                    rgba(241, 99, 63, 0.12) 28%,
+                    transparent 55%),
+                radial-gradient(circle at 100% 100%,
+                    rgba(241, 99, 63, 0.30) 0%,
+                    transparent 45%),
+                #181c1f;
         }
 
         body {
@@ -246,16 +255,15 @@
                 font-size: 34px
             }
 
-            .hero {
-                height: 440px
+            .page {
+                padding: 0 20px;
             }
 
-            .profile-content {
-                top: 310px
-            }
-
-            .photo {
-                width: 320px
+            .hero::after {
+                left: -100px;
+                right: -100px;
+                bottom: -150px;
+                height: 400px;
             }
         }
 
